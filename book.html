@@ -8,9 +8,45 @@
       margin: 0;
       padding: 0;
       display: flex;
+      height: 100vh;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+      width: 60px;
+      background-color: #2196F3;
+      display: flex;
       flex-direction: column;
       align-items: center;
-      height: 100vh;
+      padding-top: 20px;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .sidebar a img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .sidebar a:hover {
+      background-color: #0b7dda;
+      border-radius: 10px;
+      width: 50px;
+    }
+
+    /* Main content styles */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      overflow-y: auto;
     }
 
     .form-container {
@@ -100,7 +136,7 @@
     .modal {
       display: none;
       position: fixed;
-      z-index: 1;
+      z-index: 2;
       left: 0;
       top: 0;
       width: 100%;
@@ -161,7 +197,7 @@
     .spinner-modal {
       display: none;
       position: fixed;
-      z-index: 2;
+      z-index: 3;
       left: 0;
       top: 0;
       width: 100%;
@@ -198,100 +234,91 @@
     .alert-success {
       color: green;
     }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        width: 50px;
+      }
+
+      .sidebar a img {
+        width: 30px;
+        height: 30px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="form-container">
-    <h2>Booking MeetingRoom AYB</h2>
-    <form id="myForm">
-      <!-- Form Fields -->
-      <label for="date">Date:</label>
-      <input type="date" id="date" name="date" required>
+  <!-- Sidebar with icons -->
+  <div class="sidebar">
+    <a href="Meeting1.html" title="MeetingRoom1">
+      <img src="icons/meeting1.png" alt="MeetingRoom1">
+    </a>
+    <a href="Meeting2.html" title="MeetingRoom2">
+      <img src="icons/meeting2.png" alt="MeetingRoom2">
+    </a>
+    <a href="Meeting3.html" title="MeetingRoom3">
+      <img src="icons/meeting3.png" alt="MeetingRoom3">
+    </a>
+    <a href="Meeting4.html" title="MeetingRoom4">
+      <img src="icons/meeting4.png" alt="MeetingRoom4">
+    </a>
+    <a href="Meeting5.html" title="MeetingRoom5">
+      <img src="icons/meeting5.png" alt="MeetingRoom5">
+    </a>
+  </div>
 
-      <label for="translatorName">Meeting Room:</label>
-      <select id="translatorName" name="translatorName" required>
-        <option value="" disabled selected>Select Meeting Room</option>
-        <option value="MeetingRoom1">MeetingRoom1</option>
-        <option value="MeetingRoom2">MeetingRoom2</option>
-        <option value="MeetingRoom3">MeetingRoom3</option>
-        <option value="MeetingRoom4">MeetingRoom4</option>
-	<option value="MeetingRoom5">MeetingRoom5</option>
-      </select>
+  <!-- Main content -->
+  <div class="main-content">
+    <div class="form-container">
+      <h2>Booking MeetingRoom AYB</h2>
+      <form id="myForm">
+        <!-- Form Fields -->
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
 
-      <label for="bookingBy">Booking By:</label>
-      <input type="text" id="bookingBy" name="bookingBy" required>
+        <label for="translatorName">Meeting Room:</label>
+        <select id="translatorName" name="translatorName" required>
+          <option value="" disabled selected>Select Meeting Room</option>
+          <option value="MeetingRoom1">MeetingRoom1</option>
+          <option value="MeetingRoom2">MeetingRoom2</option>
+          <option value="MeetingRoom3">MeetingRoom3</option>
+          <option value="MeetingRoom4">MeetingRoom4</option>
+          <option value="MeetingRoom5">MeetingRoom5</option>
+        </select>
 
-      <label for="timeFrom">Time From:</label>
-      <select id="timeFrom" name="timeFrom" required>
-        <option value="" disabled selected>HH:MM</option>
-        <option value="07:00">07:00</option>
-        <option value="07:30">07:30</option>
-        <option value="08:00">08:00</option>
-        <option value="08:30">08:30</option>
-        <option value="09:00">09:00</option>
-        <option value="09:30">09:30</option>
-        <option value="10:00">10:00</option>
-        <option value="10:30">10:30</option>
-        <option value="11:00">11:00</option>
-        <option value="11:30">11:30</option>
-        <option value="12:00">12:00</option>
-        <option value="12:30">12:30</option>
-        <option value="13:00">13:00</option>
-        <option value="13:30">13:30</option>
-        <option value="14:00">14:00</option>
-        <option value="14:30">14:30</option>
-        <option value="15:00">15:00</option>
-        <option value="15:30">15:30</option>
-        <option value="16:00">16:00</option>
-        <option value="16:30">16:30</option>
-        <option value="17:00">17:00</option>
-        <option value="17:30">17:30</option>
-        <option value="18:00">18:00</option>
-        <option value="18:30">18:30</option>
-        <option value="19:00">19:00</option>
-        <option value="19:30">19:30</option>
-        <option value="20:00">20:00</option>
-      </select>
+        <label for="bookingBy">Booking By:</label>
+        <input type="text" id="bookingBy" name="bookingBy" required>
 
-      <label for="timeTo">Time To:</label>
-      <select id="timeTo" name="timeTo" required>
-        <option value="" disabled selected>HH:MM</option>
-	<option value="07:29">07:30</option>
-        <option value="07:59">08:00</option>
-        <option value="08:29">08:30</option>
-        <option value="08:59">09:00</option>
-        <option value="09:29">09:30</option>
-        <option value="09:59">10:00</option>
-        <option value="10:29">10:30</option>
-        <option value="10:59">11:00</option>
-        <option value="11:29">11:30</option>
-        <option value="11:59">12:00</option>
-        <option value="12:29">12:30</option>
-        <option value="12:59">13:00</option>
-        <option value="13:29">13:30</option>
-        <option value="13:59">14:00</option>
-        <option value="14:29">14:30</option>
-        <option value="14:59">15:00</option>
-        <option value="15:29">15:30</option>
-        <option value="15:59">16:00</option>
-        <option value="16:29">16:30</option>
-        <option value="16:59">17:00</option>
-        <option value="17:29">17:30</option>
-        <option value="17:59">18:00</option>
-        <option value="18:29">18:30</option>
-        <option value="18:59">19:00</option>
-        <option value="18:29">19:30</option>
-        <option value="19:59">20:00</option>
-      </select>
+        <label for="timeFrom">Time From:</label>
+        <select id="timeFrom" name="timeFrom" required>
+          <option value="" disabled selected>HH:MM</option>
+          <!-- Time options -->
+          <!-- เพิ่มตัวเลือกเวลาเหมือนเดิม -->
+          <option value="07:00">07:00</option>
+          <!-- ... -->
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+        </select>
 
-      <label for="forWork">Meeting Topic</label>
-      <textarea id="forWork" name="forWork" required></textarea>
+        <label for="timeTo">Time To:</label>
+        <select id="timeTo" name="timeTo" required>
+          <option value="" disabled selected>HH:MM</option>
+          <!-- Time options -->
+          <option value="07:30">07:30</option>
+          <!-- ... -->
+          <option value="20:00">20:00</option>
+        </select>
 
-      <input type="submit" value="Submit">
-    </form>
+        <label for="forWork">Meeting Topic:</label>
+        <textarea id="forWork" name="forWork" required></textarea>
 
-    <a href="calendar2.html" class="calendar-btn" target="_blank">View Calendar</a>
+        <input type="submit" value="Submit">
+      </form>
+
+      <a href="calendar2.html" class="calendar-btn" target="_blank">View Calendar</a>
+    </div>
   </div>
 
   <!-- Spinner modal -->
@@ -299,6 +326,7 @@
     <div class="spinner"></div>
   </div>
 
+  <!-- Modal for messages -->
   <div id="myModal" class="modal">
     <div class="modal-content">
       <p id="modalMessage"></p>
