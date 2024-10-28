@@ -517,13 +517,13 @@ function loadEventsForDay(year, month, day) {
                         let slot = getTimeSlot(timeFromSlot);
 
                         if (slot) {
-                            if (event.translator === 'SOM SAN') {
+                            if (event.translator === 'MeetingRoom1') {
                                 document.getElementById(`MeetingRoom1_${slot}`).textContent = event.work;
-                            } else if (event.translator === 'GOOK SAN') {
+                            } else if (event.translator === 'MeetingRoom2') {
                                 document.getElementById(`MeetingRoom2_${slot}`).textContent = event.work;
-                            } else if (event.translator === 'POOKY SAN') {
+                            } else if (event.translator === 'MeetingRoom3') {
                                 document.getElementById(`MeetingRoom3_${slot}`).textContent = event.work;
-                            } else if (event.translator === 'L SAN') {
+                            } else if (event.translator === 'MeetingRoom4') {
                                 document.getElementById(`MeetingRoom4_${slot}`).textContent = event.work;
                             }
                         }
