@@ -174,7 +174,7 @@
 
     spinner.style.display = 'block';
     const [year, month, day] = selectedDate.split('-');
-    const requestUrl = `https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec?page=MeetingRoom1&date=${year}-${month}-${day}`;
+    const requestUrl = `https://script.google.com/macros/s/AKfycbyXj-RYToFJybLPM3FLOP_RkgRK43D1ORWkZxnLqwpDzq6GqEV_xzyKEKshcUmiSy4/exec?page=MeetingRoom1&date=${year}-${month}-${day}`;
 
     fetch(requestUrl)
       .then(response => response.json())
