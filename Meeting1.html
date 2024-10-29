@@ -15,11 +15,15 @@
     .booking-icon {
       position: absolute;
       top: 20px;
-      right: 20px;
+      left: 20px; /* เปลี่ยนจาก right: 20px; เป็น left: 20px; */
       font-size: 24px;
       cursor: pointer;
       text-decoration: none;
       color: #2196F3;
+    }
+    .booking-icon img {
+      width: 24px;
+      height: 24px;
     }
     .booking-icon:hover {
       color: #0b7dda;
@@ -108,7 +112,9 @@
 <body>
 
 <!-- Booking Icon -->
-<a href="book.html" class="booking-icon" title="Booking">&#128197;</a>
+<a href="book.html" class="booking-icon" title="Booking">
+  <img src="icons/book01.png" alt="Booking Icon">
+</a>
 
 <h2>Schedule for MeetingRoom1</h2>
 
@@ -130,9 +136,8 @@
   </thead>
   <tbody>
     <!-- Time slots -->
-    <!-- คุณสามารถคัดลอกแถวจาก calendar2.html และปรับให้เหลือเฉพาะคอลัมน์ของ MeetingRoom1 -->
-    <!-- ตัวอย่างแถว -->
-    <tr>
+    <!-- เพิ่มแถวสำหรับช่วงเวลา -->
+<tr>
       <td class="time-slot bold-text time-column">07:00 - 07:30</td>
       <td id="MeetingRoom1_0700_0730" class="time-slot"></td>
     </tr>
@@ -235,6 +240,7 @@
       <td class="time-slot bold-text time-column">19:30 - 20:00</td>
       <td id="MeetingRoom1_1930_2000" class="time-slot"></td>
     </tr>
+
   </tbody>
 </table>
 
@@ -333,6 +339,9 @@
 
   // โหลดตารางเมื่อเปิดหน้าเว็บ
   loadSchedule();
+
+  // โหลดตารางใหม่ทุก ๆ 5 นาที (300,000 มิลลิวินาที)
+  setInterval(loadSchedule, 300000);
 </script>
 
 </body>
