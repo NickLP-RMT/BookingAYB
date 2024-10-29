@@ -1,1 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeetingRoom2 Schedule</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e3f2fd;
+      position: relative;
+      padding: 20px;
+    }
+    /* Booking icon */
+    .booking-icon {
+      position: absolute;
+      top: 20px;
+      left: 20px; /* เปลี่ยนจาก right: 20px; เป็น left: 20px; */
+      font-size: 24px;
+      cursor: pointer;
+      text-decoration: none;
+      color: #2196F3;
+    }
+    .booking-icon img {
+      width: 64px;
+      height: 64px;
+    }
+    .booking-icon:hover {
+      color: #0b7dda;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    table {
+      width: 100%;
+      /*max-width: 800px;*/
+      margin: 0 auto;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #2196F3;
+      color: white;
+    }
+    td {
+      background-color: #fff;
+      color: #333;
+    }
+    tr:nth-child(even) td {
+      background-color: #f9f9f9;
+    }
+    .time-column {
+      white-space: nowrap;
+      width: 15%;
+    }
+    .time-slot {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .bold-text {
+      font-weight: bold;
+    }
+    /* Loading Spinner Styles */
+    .spinner {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 50%;
+      left: 50%;
+      margin-top: -60px; /* Half of the height */
+      margin-left: -60px; /* Half of the width */
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    /* Date picker styles */
+    .date-picker {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .date-picker input[type="date"] {
+      padding: 8px;
+      font-size: 16px;
+    }
+    .date-picker button {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
 
+<!-- Booking Icon -->
+<a href="book.html" class="booking-icon" title="Booking">
+  <img src="icons/book01.png" alt="Booking Icon">
+</a>
+
+<h2>Schedule for MeetingRoom2</h2>
+
+<div class="date-picker">
+  <input type="date" id="selectedDate" value="">
+  <button id="loadDataButton">Load Schedule</button>
+</div>
+
+<!-- Loading spinner element -->
+<div class="spinner" id="spinner"></div>
+
+<!-- Schedule Table -->
+<table id="scheduleTable">
+  <thead>
+    <tr>
+      <th>TIME</th>
+      <th>MEETING TOPIC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Time slots -->
+    <!-- เพิ่มแถวสำหรับช่วงเวลา -->
+<tr>
+      <td class="time-slot bold-text time-column">07:00 - 07:30</td>
+      <td id="MeetingRoom2_0700_0730" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">07:30 - 08:00</td>
+      <td id="MeetingRoom2_0730_0800" class="time-slot"></td>
+<tr>
+      <td class="time-slot bold-text time-column">08:00 - 08:30</td>
+      <td id="MeetingRoom2_0800_0830" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">08:30 - 09:00</td>
+      <td id="MeetingRoom2_0830_0900" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">09:00 - 09:30</td>
+      <td id="MeetingRoom2_0900_0930" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">09:30 - 10:00</td>
+      <td id="MeetingRoom2_0930_1000" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">10:00 - 10:30</td>
+      <td id="MeetingRoom2_1000_1030" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">10:30 - 11:00</td>
+      <td id="MeetingRoom2_1030_1100" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">11:00 - 11:30</td>
+      <td id="MeetingRoom2_1100_1130" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">11:30 - 12:00</td>
+      <td id="MeetingRoom2_1130_1200" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">12:00 - 12:30</td>
+      <td id="MeetingRoom2_1200_1230" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">12:30 - 13:00</td>
+      <td id="MeetingRoom2_1230_1300" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">13:00 - 13:30</td>
+      <td id="MeetingRoom2_1300_1330" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">13:30 - 14:00</td>
+      <td id="MeetingRoom2_1330_1400" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">14:00 - 14:30</td>
+      <td id="MeetingRoom2_1400_1430" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">14:30 - 15:00</td>
+      <td id="MeetingRoom2_1430_1500" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">15:00 - 15:30</td>
+      <td id="MeetingRoom2_1500_1530" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">15:30 - 16:00</td>
+      <td id="MeetingRoom2_1530_1600" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">16:00 - 16:30</td>
+      <td id="MeetingRoom2_1600_1630" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">16:30 - 17:00</td>
+      <td id="MeetingRoom2_1630_1700" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">17:00 - 17:30</td>
+      <td id="MeetingRoom2_1700_1730" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">17:30 - 18:00</td>
+      <td id="MeetingRoom2_1730_1800" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">18:00 - 18:30</td>
+      <td id="MeetingRoom2_1800_1830" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">18:30 - 19:00</td>
+      <td id="MeetingRoom2_1830_1900" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">19:00 - 19:30</td>
+      <td id="MeetingRoom2_1900_1930" class="time-slot"></td>
+    </tr>
+    <tr>
+      <td class="time-slot bold-text time-column">19:30 - 20:00</td>
+      <td id="MeetingRoom2_1930_2000" class="time-slot"></td>
+    </tr>
+
+  </tbody>
+</table>
+
+<script>
+  const timeSlots = [
+    '0700_0730', '0730_0800', '0800_0830', '0830_0900', '0900_0930', '0930_1000',
+    '1000_1030', '1030_1100', '1100_1130', '1130_1200',
+    '1200_1230', '1230_1300', '1300_1330', '1330_1400',
+    '1400_1430', '1430_1500', '1500_1530', '1530_1600',
+    '1600_1630', '1630_1700', '1700_1730', '1730_1800',
+    '1800_1830', '1830_1900', '1900_1930', '1930_2000'
+  ];
+
+  const spinner = document.getElementById('spinner');
+  const loadDataButton = document.getElementById('loadDataButton');
+  const selectedDateInput = document.getElementById('selectedDate');
+
+  // ตั้งค่าวันที่ปัจจุบันเป็นค่าเริ่มต้น
+  const today = new Date();
+  selectedDateInput.value = today.toISOString().split('T')[0];
+
+  loadDataButton.addEventListener('click', loadSchedule);
+
+  function loadSchedule() {
+    const selectedDate = selectedDateInput.value;
+    if (!selectedDate) {
+      alert('กรุณาเลือกวันที่');
+      return;
+    }
+
+    spinner.style.display = 'block';
+    const [year, month, day] = selectedDate.split('-');
+    const requestUrl = `https://script.google.com/macros/s/AKfycbyXj-RYToFJybLPM3FLOP_RkgRK43D1ORWkZxnLqwpDzq6GqEV_xzyKEKshcUmiSy4/exec?page=MeetingRoom2&date=${year}-${month}-${day}`;
+
+    fetch(requestUrl)
+      .then(response => response.json())
+      .then(events => {
+        spinner.style.display = 'none';
+        // เคลียร์ข้อมูลเก่าในตาราง
+        timeSlots.forEach(time => {
+          document.getElementById(`MeetingRoom2_${time}`).textContent = '';
+        });
+
+        if (events.length === 0) {
+          alert('No events for this day.');
+        } else {
+          events.forEach(event => {
+            let timeFromSlot = event.timeFrom.replace(':', '');
+            let timeToSlot = event.timeTo.replace(':', '');
+
+            while (timeFromSlot < timeToSlot) {
+              let slot = getTimeSlot(timeFromSlot);
+
+              if (slot) {
+                document.getElementById(`MeetingRoom2_${slot}`).textContent = event.work;
+              }
+
+              // เพิ่มเวลา 30 นาที
+              timeFromSlot = incrementTimeSlotBy30Minutes(timeFromSlot);
+            }
+          });
+        }
+      })
+      .catch(error => {
+        spinner.style.display = 'none';
+        alert('An error occurred while fetching data.');
+        console.error(error);
+      });
+  }
+
+  function getTimeSlot(timeFrom) {
+    const slots = {
+      '0700': '0700_0730', '0730': '0730_0800', '0800': '0800_0830', '0830': '0830_0900', '0900': '0900_0930', '0930': '0930_1000',
+      '1000': '1000_1030', '1030': '1030_1100', '1100': '1100_1130', '1130': '1130_1200',
+      '1200': '1200_1230', '1230': '1230_1300', '1300': '1300_1330', '1330': '1330_1400',
+      '1400': '1400_1430', '1430': '1430_1500', '1500': '1500_1530', '1530': '1530_1600',
+      '1600': '1600_1630', '1630': '1630_1700', '1700': '1700_1730', '1730': '1730_1800',
+      '1800': '1800_1830', '1830': '1830_1900', '1900': '1900_1930', '1930': '1930_2000'
+    };
+
+    return slots[timeFrom] || null;
+  }
+
+  function incrementTimeSlotBy30Minutes(timeSlot) {
+    let hour = parseInt(timeSlot.slice(0, 2));
+    let minute = parseInt(timeSlot.slice(2));
+
+    minute += 30;
+    if (minute >= 60) {
+      minute = 0;
+      hour += 1;
+    }
+
+    return ('0' + hour).slice(-2) + ('0' + minute).slice(-2);
+  }
+
+  // โหลดตารางเมื่อเปิดหน้าเว็บ
+  loadSchedule();
+
+  // โหลดตารางใหม่ทุก ๆ 5 นาที (300,000 มิลลิวินาที)
+  setInterval(loadSchedule, 300000);
+</script>
+
+</body>
+</html>
