@@ -273,7 +273,7 @@
 
     spinner.style.display = 'block';
     const [year, month, day] = selectedDate.split('-');
-    const requestUrl = `https://script.google.com/macros/s/AKfycbyXj-RYToFJybLPM3FLOP_RkgRK43D1ORWkZxnLqwpDzq6GqEV_xzyKEKshcUmiSy4/exec?page=MeetingRoom2&date=${year}-${month}-${day}`;
+    const requestUrl = `https://script.google.com/macros/s/AKfycbxhQ3WzqU3KAeBAYxHiVBSfgPamE8Pg5PNIZssWPBoae_Uy8XkkfTJat9JD836NoZ6mUg/exec?page=MeetingRoom2&date=${year}-${month}-${day}`;
 
     fetch(requestUrl)
       .then(response => response.json())
